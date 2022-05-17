@@ -6,16 +6,18 @@ const SPEED = 300
 var mouseIn = false
 onready var movePos = position
 
+var targets = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	$Circle.visible = false
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if position != movePos:
-		move_and_slide(Vector2(movePos.x - position.x, movePos.y - position.y).normalized()*SPEED)
+		move_and_slide(Vector2(movePos.x-position.x, movePos.y-position.y).normalized() * SPEED)
 	
 
 
@@ -31,11 +33,10 @@ func _input(event):
 	if Input.is_action_just_pressed("select") and mouseIn:
 		if is_in_group("selected"):
 			remove_from_group("selected")
-			$Sprite.flip_v = false
+			$Circle.visible = false
 		else:
 			add_to_group("selected")
-			$Sprite.flip_v = true
-			print("thanks for choosing me")
+			$Circle.visible = true
 
 
 func move():
@@ -44,6 +45,16 @@ func move():
 	
 
 
+
+
+func _on_Range_body_entered(body):
+	if body.is_in_group("Team2"):
+		targets.append(body)
+		print(targets)
+func _on_Range_body_exited(body):
+	if targets.has(body):
+		targets.remove(targets.find(body))
+		print(targets)
 
 
 
