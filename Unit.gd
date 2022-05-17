@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 const SPEED = 300
 
-
 var mouseIn = false
 onready var movePos = position
 
@@ -12,7 +11,7 @@ var targets = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Circle.visible = false
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -42,13 +41,13 @@ func _input(event):
 func move():
 	movePos = get_viewport().get_mouse_position()
 	rotate(get_angle_to(movePos) - PI/2)
-	
 
 
 
 
 func _on_Range_body_entered(body):
-	if body.is_in_group("Team2"):
+	if is_in_group("team1") && body.is_in_group("team2") \
+			or is_in_group("team2") && body.is_in_group("team1"):
 		targets.append(body)
 		print(targets)
 func _on_Range_body_exited(body):
