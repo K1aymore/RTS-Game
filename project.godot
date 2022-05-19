@@ -31,6 +31,15 @@ command={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="team1"
+2d_physics/layer_2="team2"
+2d_physics/layer_3="team3"
+2d_physics/layer_4="team4"
+2d_physics/layer_7="bullets"
+2d_physics/layer_8="buildings"
+
 [physics]
 
 common/enable_pause_aware_picking=true
