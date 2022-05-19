@@ -35,13 +35,11 @@ func _process(delta):
 		$Circle.visible = false	
 
 
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("select") and mouseIn and is_in_group("team1"):
-		get_tree().set_input_as_handled()
-		if is_in_group("selected"):
-			remove_from_group("selected")
-		else:
-			add_to_group("selected")
+#func _unhandled_input(event):
+#	if Input.is_action_just_pressed("select") and mouseIn and is_in_group("team1"):
+#		add_to_group("selected")
+#		for i in get_tree().get_nodes_in_group("selected"):
+#			i.remove_from_group("selected")
 
 
 func move():

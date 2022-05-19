@@ -12,3 +12,6 @@ position = Vector2( 216, 275 )
 [node name="Unit2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 786, 290 )
 myTeam = "team2"
+
+[node name="Unit3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 208, 418 )
