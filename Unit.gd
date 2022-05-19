@@ -8,6 +8,7 @@ const SPEED = 300
 const MOVEBUFFER = 3
 
 export var myTeam = "team1"
+var health = 100
 
 var mouseIn = false
 onready var movePos = position
@@ -47,7 +48,6 @@ func move():
 	movePos = get_viewport().get_mouse_position()
 	rotate(get_angle_to(movePos) - PI/2)
 
-
 # shoot
 func _on_FireRate_timeout():
 	var newBul = bullet.instance()
@@ -56,12 +56,17 @@ func _on_FireRate_timeout():
 	newBul.myTeam = myTeam
 	get_parent().add_child(newBul)
 
+func damage(amount):
+	health -= amount
+	if health <= 0:
+		queue_free()
 
 
 func _on_Unit_mouse_entered():
 	mouseIn = true
 func _on_Unit_mouse_exited():
 	mouseIn = false
+
 
 func _on_Range_body_entered(body):
 	if is_in_group("team1") && body.is_in_group("team2") \
