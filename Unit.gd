@@ -21,9 +21,12 @@ var targets = []
 func _ready():
 	add_to_group(myTeam)
 	$Circle.visible = false
+	$HealthBar.visible = false
 
 
 func _process(delta):
+	
+	
 	if position.distance_to(movePos) > MOVEBUFFER:
 		move_and_slide(Vector2(movePos.x-position.x, movePos.y-position.y).normalized() * SPEED)
 	else:
@@ -44,7 +47,8 @@ func _process(delta):
 
 func move():
 	movePos = get_viewport().get_mouse_position()
-	rotate(get_angle_to(movePos) - PI/2)
+	$CollisionShape2D.rotate($CollisionShape2D.get_angle_to(movePos) - PI/2)
+	$Sprite.rotate($Sprite.get_angle_to(movePos) - PI/2)
 
 # shoot
 func _on_FireRate_timeout():
@@ -56,6 +60,8 @@ func _on_FireRate_timeout():
 
 func damage(amount):
 	health -= amount
+	$HealthBar.visible = true
+	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
 
