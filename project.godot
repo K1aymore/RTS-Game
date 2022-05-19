@@ -11,8 +11,16 @@ config_version=4
 [application]
 
 config/name="Top-Down"
-run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://Assets/icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/borderless=true
+window/size/fullscreen=true
 
 [gdnative]
 

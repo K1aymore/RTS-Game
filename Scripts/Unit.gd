@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-onready var bullet = preload("res://Bullet.tscn")
+onready var bullet = preload("res://Scenes/Bullet.tscn")
 
 
 const SPEED = 300
@@ -25,8 +25,6 @@ func _ready():
 
 
 func _process(delta):
-	
-	
 	if position.distance_to(movePos) > MOVEBUFFER:
 		move_and_slide(Vector2(movePos.x-position.x, movePos.y-position.y).normalized() * SPEED)
 	else:
@@ -64,6 +62,7 @@ func damage(amount):
 	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
+
 
 
 func _on_Unit_mouse_entered():
