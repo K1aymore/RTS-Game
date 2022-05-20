@@ -45,8 +45,21 @@ func _process(delta):
 
 func move():
 	movePos = get_viewport().get_mouse_position()
+	var selected = get_tree().get_nodes_in_group("selected")
+	# if shouldn't be in the middle, go to the sides
+	if selected.find(self) > 0 && selected.find(self) % 3 != 0:
+		if selected.find(self) % 2 == 0:
+			movePos.x += 100
+		else:
+			movePos.x -= 100
+	# after every three, go back a row
+	for i in selected.find(self)/3:
+		movePos.y += 100
+	
 	$CollisionShape2D.rotate($CollisionShape2D.get_angle_to(movePos) - PI/2)
 	$Sprite.rotate($Sprite.get_angle_to(movePos) - PI/2)
+
+
 
 # shoot
 func _on_FireRate_timeout():

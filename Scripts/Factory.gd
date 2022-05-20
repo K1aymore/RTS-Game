@@ -2,6 +2,8 @@ extends StaticBody2D
 
 onready var unit = preload("res://Scenes/Unit.tscn")
 
+export var myTeam = "team1"
+
 var mouseIn = false
 
 
@@ -18,6 +20,7 @@ func _unhandled_input(event):
 func spawn_unit():
 	var newUnit = unit.instance()
 	newUnit.position = Vector2(position.x, position.y + 200)
+	newUnit.myTeam = myTeam
 	get_parent().add_child(newUnit)
 
 
