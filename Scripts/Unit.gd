@@ -17,7 +17,6 @@ var targets = []
 
 
 
-
 func _ready():
 	add_to_group(myTeam)
 	$Circle.visible = false
@@ -56,6 +55,7 @@ func move():
 	for i in selected.find(self)/3:
 		movePos.y += 100
 	
+	# turn towards point
 	$CollisionShape2D.rotate($CollisionShape2D.get_angle_to(movePos) - PI/2)
 	$Sprite.rotate($Sprite.get_angle_to(movePos) - PI/2)
 
