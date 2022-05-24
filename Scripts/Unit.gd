@@ -43,7 +43,7 @@ func _process(delta):
 
 
 func move():
-	movePos = get_viewport().get_mouse_position()
+	movePos = get_global_mouse_position()
 	var selected = get_tree().get_nodes_in_group("selected")
 	# if shouldn't be in the middle, go to the sides
 	if selected.find(self) > 0 && selected.find(self) % 3 != 0:
