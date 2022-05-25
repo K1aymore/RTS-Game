@@ -12,8 +12,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("command"):
 		 get_tree().call_group("selected", "move")
 	
-	$Camera2D.position.x += Input.get_axis("ui_left", "ui_right") * CAMERASPEED * delta
-	$Camera2D.position.y += Input.get_axis("ui_up", "ui_down") * CAMERASPEED * delta
+	$Viewport.position.x += Input.get_axis("ui_left", "ui_right") * CAMERASPEED * delta
+	$Viewport.position.y += Input.get_axis("ui_up", "ui_down") * CAMERASPEED * delta
 
 
 func _draw():

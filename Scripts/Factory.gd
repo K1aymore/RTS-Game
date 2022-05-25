@@ -10,7 +10,16 @@ var mouseIn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_to_group(myTeam)
+
+
+func _process(delta):
+	if is_in_group("selected"):
+		$Circle.visible = true;
+	else:
+		$Circle.visible = false;
+
+
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("select") and mouseIn:
