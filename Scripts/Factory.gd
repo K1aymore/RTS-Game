@@ -14,6 +14,8 @@ func _ready():
 
 
 func _process(delta):
+	$ProgressBar.value = (($UnitTimer.wait_time - $UnitTimer.time_left) / $UnitTimer.wait_time) * 100
+	
 	if is_in_group("selected"):
 		$Circle.visible = true;
 	else:
@@ -26,12 +28,14 @@ func _process(delta):
 #		spawn_unit()
 
 func add_unit():
-	$UnitTimer.wait_time = 3
+	$ProgressBar.visible = true
+	$UnitTimer.wait_time = 2
 	$UnitTimer.start()
 
 
 # spawn unit
 func _on_UnitTimer_timeout():
+	$ProgressBar.visible = false
 	var newUnit = unit.instance()
 	newUnit.position = Vector2(position.x, position.y + 200)
 	newUnit.myTeam = myTeam
