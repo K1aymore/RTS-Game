@@ -25,5 +25,9 @@ position = Vector2( 5, -1 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
+[node name="UnitTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_Factory_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Factory_mouse_exited"]
+[connection signal="timeout" from="UnitTimer" to="." method="_on_UnitTimer_timeout"]

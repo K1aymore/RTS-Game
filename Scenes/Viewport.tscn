@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/icon.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Viewport.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Viewport.gd" type="Script" id=2]
 
 [node name="Viewport" type="Camera2D"]
 position = Vector2( 960, 540 )

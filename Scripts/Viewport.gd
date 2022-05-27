@@ -17,4 +17,4 @@ func _ready():
 
 
 func _on_Tank_pressed():
-	get_tree().get_nodes_in_group("selected")[0].spawn_unit()
+	get_tree().get_nodes_in_group("selected")[0].add_unit()

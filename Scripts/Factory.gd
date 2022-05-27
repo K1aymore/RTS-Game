@@ -21,19 +21,28 @@ func _process(delta):
 
 
 
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("select") and mouseIn:
-		spawn_unit()
+#func _unhandled_input(event):
+#	if Input.is_action_just_pressed("select") and mouseIn:
+#		spawn_unit()
+
+func add_unit():
+	$UnitTimer.wait_time = 3
+	$UnitTimer.start()
 
 
-func spawn_unit():
+# spawn unit
+func _on_UnitTimer_timeout():
 	var newUnit = unit.instance()
 	newUnit.position = Vector2(position.x, position.y + 200)
 	newUnit.myTeam = myTeam
 	get_parent().add_child(newUnit)
 
 
+
 func _on_Factory_mouse_entered():
 	mouseIn = true
 func _on_Factory_mouse_exited():
 	mouseIn = false
+
+
+
