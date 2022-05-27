@@ -8,12 +8,17 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$BottomBar.visible = false
+	$BottomBar/Factory.visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func bar_update():
+	if get_tree().get_nodes_in_group("selected").size() > 0:
+		$BottomBar.visible = true
+		$BottomBar/Factory.visible = get_tree().get_nodes_in_group("selected")[0].name == "Factory"
+	else:
+		$BottomBar.visible = false
 
 
 func _on_Tank_pressed():

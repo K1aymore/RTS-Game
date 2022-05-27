@@ -46,6 +46,8 @@ func _unhandled_input(event):
 			for i in space.intersect_shape(query):
 				if i.collider.is_in_group("team1"):
 					i.collider.add_to_group("selected")
+		
+		$Viewport.bar_update()
 
 
 
