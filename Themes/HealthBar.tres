@@ -4,7 +4,7 @@
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.843137, 0.635294, 0.145098, 1 )
+bg_color = Color( 0.32549, 0.972549, 0.337255, 1 )
 
 [resource]
 ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )

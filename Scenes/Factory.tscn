@@ -30,6 +30,7 @@ texture = ExtResource( 3 )
 one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 margin_left = -98.0
 margin_top = -119.0
 margin_right = 98.0

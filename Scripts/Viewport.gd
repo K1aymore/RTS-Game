@@ -8,9 +8,7 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$BottomBar.visible = false
-	$BottomBar/Factory.visible = false
-
+	bar_update()
 
 
 func bar_update():
@@ -22,4 +20,4 @@ func bar_update():
 
 
 func _on_Tank_pressed():
-	get_tree().get_nodes_in_group("selected")[0].add_unit()
+	get_tree().get_nodes_in_group("selected")[0].add_unit("Tank")
