@@ -11,6 +11,15 @@ func _ready():
 func _process(delta):
 	position.x += Input.get_axis("ui_left", "ui_right") * SPEED * delta
 	position.y += Input.get_axis("ui_up", "ui_down") * SPEED * delta
+	
+	if Input.is_action_just_pressed("zoom_in"):
+		zoom.x -= .2
+		scale.x -= .2
+	elif Input.is_action_just_pressed("zoom_out"):
+		zoom.x += .2
+		scale.x += .2
+	zoom.y = zoom.x
+	scale.y = scale.x
 
 
 func bar_update():
