@@ -5,6 +5,7 @@ onready var unit = preload("res://Scenes/Unit.tscn")
 export var myTeam = "team1"
 
 var unitQueue = []
+var rallyPoint
 
 var mouseIn = false
 
@@ -15,7 +16,8 @@ func _ready():
 	add_to_group(myTeam)
 	add_to_group("factories")
 	$ProgressBar.visible = false
-	
+	rallyPoint = Vector2(position.x, position.y + 300)
+
 
 func _process(delta):
 	$ProgressBar.value = (($UnitTimer.wait_time - $UnitTimer.time_left) / $UnitTimer.wait_time) * 100
@@ -47,9 +49,10 @@ func timer_start():
 func _on_UnitTimer_timeout():
 	unitQueue.remove(0)
 	var newUnit = unit.instance()
-	newUnit.position = Vector2(position.x, position.y + 200)
+	newUnit.position = Vector2(position.x, position.y + 150)
 	newUnit.myTeam = myTeam
 	get_parent().add_child(newUnit)
+	newUnit.movePos = rallyPoint
 	
 	if unitQueue.size() > 0:
 		timer_start()

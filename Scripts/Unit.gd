@@ -22,11 +22,12 @@ func _ready():
 	add_to_group("units")
 	$Circle.visible = false
 	$HealthBar.visible = false
+	print(movePos)
 
 
 func _process(delta):
 	if position.distance_to(movePos) > MOVEBUFFER:
-		move_and_slide(Vector2(movePos.x-position.x, movePos.y-position.y).normalized() * SPEED)
+		move()
 	else:
 		position = movePos
 	
@@ -43,7 +44,7 @@ func _process(delta):
 #			i.remove_from_group("selected")
 
 
-func move():
+func mouse_move_pos():
 	movePos = get_global_mouse_position()
 	var selected = get_tree().get_nodes_in_group("selected")
 	# if shouldn't be in the middle, go to the sides
@@ -55,10 +56,14 @@ func move():
 	# after every three, go back a row
 	for i in selected.find(self)/3:
 		movePos.y += 100
-	
+
+
+func move():
 	# turn towards point
 	$CollisionShape2D.rotate($CollisionShape2D.get_angle_to(movePos) - PI/2)
 	$Sprite.rotate($Sprite.get_angle_to(movePos) - PI/2)
+	
+	move_and_slide(Vector2(movePos.x-position.x, movePos.y-position.y).normalized() * SPEED)
 
 
 
