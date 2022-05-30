@@ -1,19 +1,15 @@
 extends Node2D
 
-const CAMERASPEED = 800
-
 var team = "team1"
 
 var dragging = false
 var drag_start
 var select_rect = RectangleShape2D.new()
 
+
 func _process(delta):
 	if Input.is_action_just_pressed("command"):
 		 get_tree().call_group("selected", "mouse_move_pos")
-	
-	$Viewport.position.x += Input.get_axis("ui_left", "ui_right") * CAMERASPEED * delta
-	$Viewport.position.y += Input.get_axis("ui_up", "ui_down") * CAMERASPEED * delta
 
 
 func _draw():

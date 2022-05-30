@@ -22,7 +22,6 @@ func _ready():
 	add_to_group("units")
 	$Circle.visible = false
 	$HealthBar.visible = false
-	print(movePos)
 
 
 func _process(delta):
