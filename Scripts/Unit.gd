@@ -19,6 +19,7 @@ var targets = []
 
 func _ready():
 	add_to_group(myTeam)
+	add_to_group("units")
 	$Circle.visible = false
 	$HealthBar.visible = false
 

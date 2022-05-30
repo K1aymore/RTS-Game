@@ -25,20 +25,22 @@ func _draw():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and dragging:
 		update()
-		
+	
 	if Input.is_action_just_pressed("select"):
 		dragging = true
 		drag_start = get_global_mouse_position()
 	
 	if Input.is_action_just_released("select"):
-		# deselect all units
-		for i in get_tree().get_nodes_in_group("selected"):
-			i.remove_from_group("selected")
+		if !Input.is_action_pressed("shift"):
+			deselect_all()
+		
 		# finish dragging box
 		if dragging:
 			dragging = false
 			update()
 			select_rect.extents = (get_global_mouse_position() - drag_start) / 2
+			
+			# Magic
 			var space = get_world_2d().direct_space_state
 			var query = Physics2DShapeQueryParameters.new()
 			query.set_shape(select_rect)
@@ -46,9 +48,30 @@ func _unhandled_input(event):
 			for i in space.intersect_shape(query):
 				if i.collider.is_in_group("team1"):
 					i.collider.add_to_group("selected")
+			
+			if get_tree().get_nodes_in_group("selected").size() > 0:
+				if selected_has("factories") && selected_has("units"):
+					while selected_has("factories"):
+						selected_get("factories").remove_from_group("selected")
 		
 		$Viewport.bar_update()
 
 
+func deselect_all():
+	for i in get_tree().get_nodes_in_group("selected"):
+			i.remove_from_group("selected")
+
+
+func selected_has(type):
+	for i in get_tree().get_nodes_in_group("selected"):
+		if i.is_in_group(type):
+			return true
+	return false
+
+
+func selected_get(type):
+	for i in get_tree().get_nodes_in_group("selected"):
+		if i.is_in_group(type):
+			return i
 
 
