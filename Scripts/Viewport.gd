@@ -5,6 +5,8 @@ const SPEED = 800
 var mouseStopPos
 var velocity = Vector2.ZERO
 
+var newZoom = Vector2.ONE
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,21 +16,21 @@ func _ready():
 func _process(delta):
 	velocity = Vector2.ZERO
 	
-	process_zoom()
+	process_zoom(delta)
 	move(delta)
 	
 	position += velocity
 
 
-func process_zoom():
+func process_zoom(delta):
 	if Input.is_action_just_pressed("zoom_in"):
-		zoom.x -= .2
-		scale.x -= .2
+		newZoom.x -= .15
 	elif Input.is_action_just_pressed("zoom_out"):
-		zoom.x += .2
-		scale.x += .2
-	zoom.y = zoom.x
-	scale.y = scale.x
+		newZoom.x += .15
+	
+	newZoom.y = newZoom.x
+	zoom = zoom.linear_interpolate(newZoom, .5)
+	scale = zoom
 
 
 func move(delta):
