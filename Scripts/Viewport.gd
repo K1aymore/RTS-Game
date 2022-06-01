@@ -6,6 +6,7 @@ var mouseStopPos
 var velocity = Vector2.ZERO
 
 var newZoom = Vector2.ONE
+var newPos = position
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,13 +25,19 @@ func _process(delta):
 
 func process_zoom(delta):
 	if Input.is_action_just_pressed("zoom_in"):
-		newZoom.x -= .15
+		newZoom.x -= .1
+		newPos = (position + get_global_mouse_position())/2
 	elif Input.is_action_just_pressed("zoom_out"):
-		newZoom.x += .15
+		newZoom.x += .1
+		newPos = (position + get_global_mouse_position())/2
+		newPos.x = (position.x + position.x - (get_global_mouse_position().x - position.x))/2
+		newPos.y = (position.y + position.y - (get_global_mouse_position().y - position.y))/2
 	
 	newZoom.y = newZoom.x
 	zoom = zoom.linear_interpolate(newZoom, .5)
 	scale = zoom
+	
+	velocity += (newPos - position)/10
 
 
 func move(delta):
@@ -41,6 +48,7 @@ func move(delta):
 		mouseStopPos = get_global_mouse_position()
 	if Input.is_action_pressed("move"):
 		velocity += (mouseStopPos - get_global_mouse_position())
+		newPos = position
 
 
 
