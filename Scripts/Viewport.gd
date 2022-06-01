@@ -2,6 +2,9 @@ extends Camera2D
 
 const SPEED = 800
 
+var mouseStopPos
+var velocity = Vector2.ZERO
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,9 +12,15 @@ func _ready():
 
 
 func _process(delta):
-	position.x += Input.get_axis("ui_left", "ui_right") * SPEED * delta
-	position.y += Input.get_axis("ui_up", "ui_down") * SPEED * delta
+	velocity = Vector2.ZERO
 	
+	process_zoom()
+	move(delta)
+	
+	position += velocity
+
+
+func process_zoom():
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom.x -= .2
 		scale.x -= .2
@@ -20,6 +29,17 @@ func _process(delta):
 		scale.x += .2
 	zoom.y = zoom.x
 	scale.y = scale.x
+
+
+func move(delta):
+	velocity.x += Input.get_axis("ui_left", "ui_right") * SPEED * delta
+	velocity.y += Input.get_axis("ui_up", "ui_down") * SPEED * delta
+	
+	if Input.is_action_just_pressed("move"):
+		mouseStopPos = get_global_mouse_position()
+	if Input.is_action_pressed("move"):
+		velocity += (mouseStopPos - get_global_mouse_position())
+
 
 
 func bar_update():
