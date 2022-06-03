@@ -1,6 +1,6 @@
 extends Camera2D
 
-var main = get_parent()
+onready var main = get_parent()
 
 const SPEED = 800
 
@@ -59,6 +59,9 @@ func bar_update():
 		$BottomBar/Factory.visible = selected_has("factories")
 	else:
 		$BottomBar.visible = false
+	
+	$MassBar.value = main.mass
+	$EnergyBar.value = main.mass
 
 
 func _on_Tank_pressed():

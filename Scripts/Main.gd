@@ -2,10 +2,10 @@ extends Node2D
 
 var team = "team1"
 
-var mass = "100"
-var energy = "100"
-var maxMass = "100"
-var maxEnergy = "100"
+var mass = 50
+var energy = 50
+var maxMass = 100
+var maxEnergy = 100
 
 var dragging = false
 var drag_start
