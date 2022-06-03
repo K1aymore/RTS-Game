@@ -14,9 +14,6 @@ extents = Vector2( 32, 32 )
 [node name="Unit" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Range" type="Area2D" parent="."]
 

@@ -1,5 +1,7 @@
 extends Camera2D
 
+var main = get_parent()
+
 const SPEED = 800
 
 var mouseStopPos
@@ -24,12 +26,11 @@ func _process(delta):
 
 
 func process_zoom(delta):
-	if Input.is_action_just_pressed("zoom_in"):
+	if Input.is_action_just_released("zoom_in"):
 		newZoom.x -= .1
 		newPos = (position + get_global_mouse_position())/2
-	elif Input.is_action_just_pressed("zoom_out"):
+	elif Input.is_action_just_released("zoom_out"):
 		newZoom.x += .1
-		newPos = (position + get_global_mouse_position())/2
 		newPos.x = (position.x + position.x - (get_global_mouse_position().x - position.x))/2
 		newPos.y = (position.y + position.y - (get_global_mouse_position().y - position.y))/2
 	
