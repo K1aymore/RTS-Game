@@ -28,9 +28,6 @@ __meta__ = {
 [node name="Factory" type="HBoxContainer" parent="BottomBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Units" type="HBoxContainer" parent="BottomBar/Factory"]
 margin_right = 1920.0
@@ -42,6 +39,28 @@ __meta__ = {
 }
 
 [node name="Tank" type="TextureButton" parent="BottomBar/Factory/Units"]
+margin_right = 1920.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 4
+
+[node name="Main" type="HBoxContainer" parent="BottomBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Buildings" type="HBoxContainer" parent="BottomBar/Main"]
+margin_right = 1920.0
+margin_bottom = 121.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Energy" type="TextureButton" parent="BottomBar/Main/Buildings"]
 margin_right = 1920.0
 margin_bottom = 121.0
 size_flags_horizontal = 3
@@ -96,3 +115,4 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="BottomBar/Factory/Units/Tank" to="." method="_on_Tank_pressed"]
+[connection signal="pressed" from="BottomBar/Main/Buildings/Energy" to="." method="_on_Energy_pressed"]

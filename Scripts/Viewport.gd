@@ -7,6 +7,8 @@ const SPEED = 800
 var mouseStopPos
 var velocity = Vector2.ZERO
 
+var placing = ""
+
 var newZoom = Vector2.ONE
 var newPos = position
 
@@ -24,6 +26,14 @@ func _process(delta):
 	bar_update()
 	
 	position += velocity
+	
+	if Input.is_action_just_pressed("select") && placing != "":
+		if placing == "energy":
+			var build = preload("res://Scenes/Energy Generator.tscn").instance()
+			build.position = get_global_mouse_position()
+			main.add_child(build)
+		
+		placing = ""
 
 
 func process_zoom(delta):
@@ -55,20 +65,11 @@ func move(delta):
 
 
 func bar_update():
-	if get_tree().get_nodes_in_group("selected").size() > 0:
-		$BottomBar.visible = true
-		$BottomBar/Factory.visible = selected_has("factories")
-	else:
-		$BottomBar.visible = false
+	$BottomBar/Main.visible = !get_tree().get_nodes_in_group("selected").size() > 0
+	$BottomBar/Factory.visible = selected_has("factories")
 	
 	$MassBar.value = main.mass
 	$EnergyBar.value = main.mass
-
-
-func _on_Tank_pressed():
-	for f in selected_get_all("factories"):
-		f.add_unit("Tank")
-
 
 
 
@@ -85,3 +86,12 @@ func selected_get_all(type):
 			array.append(i)
 	return array
 
+
+
+func _on_Tank_pressed():
+	for f in selected_get_all("factories"):
+		f.add_unit("Tank")
+
+
+func _on_Energy_pressed():
+	placing = "energy"
