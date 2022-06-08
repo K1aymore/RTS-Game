@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 onready var bullet = preload("res://Scenes/Bullet.tscn")
-
+onready var main = get_parent()
 
 const SPEED = 300
 const MOVEBUFFER = 3

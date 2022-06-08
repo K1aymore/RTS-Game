@@ -15,6 +15,9 @@ var select_rect = RectangleShape2D.new()
 func _process(delta):
 	if Input.is_action_just_pressed("command"):
 		 get_tree().call_group("selected", "mouse_move_pos")
+	
+	mass += delta
+	energy += delta
 
 
 func _draw():
@@ -55,7 +58,6 @@ func _unhandled_input(event):
 					while selected_has("factories"):
 						selected_get("factories").remove_from_group("selected")
 		
-		$Viewport.bar_update()
 
 
 func deselect_all():
@@ -74,5 +76,4 @@ func selected_get(type):
 	for i in get_tree().get_nodes_in_group("selected"):
 		if i.is_in_group(type):
 			return i
-
 

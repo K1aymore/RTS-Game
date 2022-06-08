@@ -21,6 +21,7 @@ func _process(delta):
 	
 	process_zoom(delta)
 	move(delta)
+	bar_update()
 	
 	position += velocity
 

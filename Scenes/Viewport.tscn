@@ -57,11 +57,7 @@ margin_right = -500.0
 margin_bottom = -460.0
 mouse_filter = 2
 theme = ExtResource( 3 )
-step = 1.0
 value = 100.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MassBar"]
 margin_left = 4.0
@@ -82,7 +78,6 @@ margin_right = 940.0
 margin_bottom = -460.0
 mouse_filter = 2
 theme = ExtResource( 5 )
-step = 1.0
 value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 onready var unit = preload("res://Scenes/Unit.tscn")
+onready var main = get_parent()
 
 export var myTeam = "team1"
 
@@ -47,6 +48,8 @@ func timer_start():
 
 # spawn unit
 func _on_UnitTimer_timeout():
+	main.mass -= 4
+	main.energy -= 4
 	unitQueue.remove(0)
 	var newUnit = unit.instance()
 	newUnit.position = Vector2(position.x, position.y + 150)
